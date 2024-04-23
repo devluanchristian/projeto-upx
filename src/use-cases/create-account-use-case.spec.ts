@@ -5,7 +5,7 @@ import { it, expect, describe, beforeEach } from 'vitest'
 let userRepository: InMemoryUserRepository
 let createAccountUseCase: CreateAccountUseCase
 
-describe('Create account user use caso', () => {
+describe('Create account user use case', () => {
   beforeEach(() => {
     userRepository = new InMemoryUserRepository()
     createAccountUseCase = new CreateAccountUseCase(userRepository)

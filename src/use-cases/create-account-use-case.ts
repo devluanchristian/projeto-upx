@@ -13,7 +13,7 @@ interface CreateAccountUseCaseResponse {
 }
 
 export class CreateAccountUseCase {
-  constructor(private UserRepository: UserRepository) {}
+  constructor(private userRepository: UserRepository) {}
   async execute({
     name,
     CPF,
@@ -21,11 +21,11 @@ export class CreateAccountUseCase {
   }: CreateAccountUseCaseRequest): Promise<CreateAccountUseCaseResponse> {
     const password_hash = await hash(password, 8)
 
-    const cpfAlreadyExists = await this.UserRepository.findByCPF(CPF)
+    const cpfAlreadyExists = await this.userRepository.findByCPF(CPF)
     if (cpfAlreadyExists) {
       throw new Error('CPF already exists')
     }
-    const user = await this.UserRepository.create({
+    const user = await this.userRepository.create({
       name,
       CPF,
       password_hash,

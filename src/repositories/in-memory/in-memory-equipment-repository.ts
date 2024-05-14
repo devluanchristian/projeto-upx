@@ -5,11 +5,16 @@ export class InMemoryEquipmentRepository implements EquipmentRepository {
   public items: Equipment[] = []
 
   async create(data: Prisma.EquipmentCreateInput) {
-    const equipment = {
+    const equipment: Equipment = {
       id: 'equipment-01',
       name: data.name,
-      lastInstallationDate: new Date() ?? null,
-      nextInstallationDate: new Date() ?? null,
+      description: data.description ?? null,
+      lastManutentionDate: new Date() ?? null,
+      nextManutentionDate: new Date() ?? null,
+      currentInstallationDate: new Date() ?? null,
+      location: data.location,
+      url_image: data.url_image ?? null,
+      serialNumber: data.serialNumber,
       status: data.status ?? true,
       created_at: new Date(),
     }

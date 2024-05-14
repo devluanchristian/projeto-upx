@@ -12,9 +12,14 @@ describe('Create equipment use case', () => {
   })
 
   it('should to create a new equipment', async () => {
+    const futureDate = new Date()
+    futureDate.setMonth(futureDate.getMonth() + 5)
     const { equipment } = await createEquipmentUseCase.execute({
       name: 'Ferramenta 01',
-      status: true,
+      currentInstallationDate: new Date().toLocaleDateString(),
+      location: 'setor 3',
+      nextManutentionDate: futureDate.toLocaleDateString(),
+      serialNumber: '53843828NNKJAD0',
     })
     console.log(equipment)
     expect(equipment.id).toEqual(expect.any(String))

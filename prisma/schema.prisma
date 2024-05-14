@@ -19,10 +19,15 @@ model User {
 }
 
 model Equipment {
-  id                   String    @id @default(uuid())
-  name                 String
-  lastInstallationDate DateTime?
-  nextInstallationDate DateTime?
-  status               Boolean   @default(false)
-  created_at           DateTime  @default(now())
+  id                      String    @id @default(uuid())
+  name                    String
+  description             String?
+  lastManutentionDate     DateTime?
+  nextManutentionDate     DateTime
+  currentInstallationDate DateTime
+  location                String
+  url_image               String?
+  serialNumber            String
+  status                  Boolean?  @default(true)
+  created_at              DateTime  @default(now())
 }

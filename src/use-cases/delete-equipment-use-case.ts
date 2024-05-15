@@ -16,7 +16,7 @@ export class DeleteEquipmentUseCase {
     if (!equipment) {
       throw new Error('Equipment not found')
     }
-    await this.equipmentRepository.delete(equipment)
+    await this.equipmentRepository.delete(equipmentId)
     return { messagem: 'Item deleted successfully' }
   }
 }

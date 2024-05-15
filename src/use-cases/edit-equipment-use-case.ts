@@ -9,7 +9,7 @@ interface EditEquipmentUseCaseRequest {
   nextManutentionDate: string
   location: string
   serialNumber: string
-  updated_at: string
+  updated_at?: string
 }
 
 interface EditEquipmentUseCaseResponse {

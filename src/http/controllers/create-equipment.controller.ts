@@ -25,8 +25,8 @@ export async function createEquipment(
   } = createEquipmentBodySchema.parse(request.body)
 
   try {
-    const userRepository = new PrismaEquipmentRepository()
-    const createEquipmentUseCase = new CreateEquipmentUseCase(userRepository)
+    const repositories = new PrismaEquipmentRepository()
+    const createEquipmentUseCase = new CreateEquipmentUseCase(repositories)
 
     const { equipment } = await createEquipmentUseCase.execute({
       name,

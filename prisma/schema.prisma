@@ -28,6 +28,7 @@ model Equipment {
   location                String
   url_image               String?
   serialNumber            String
-  status                  Boolean?  @default(true)
+  status                  Boolean?
   created_at              DateTime  @default(now())
+  updated_at              DateTime?
 }

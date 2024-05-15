@@ -9,16 +9,39 @@ export class InMemoryEquipmentRepository implements EquipmentRepository {
       id: 'equipment-01',
       name: data.name,
       description: data.description ?? null,
-      lastManutentionDate: new Date() ?? null,
-      nextManutentionDate: new Date() ?? null,
-      currentInstallationDate: new Date() ?? null,
+      lastManutentionDate: data.lastManutentionDate
+        ? new Date(data.lastManutentionDate)
+        : null,
+      nextManutentionDate: new Date(data.nextManutentionDate),
+      currentInstallationDate: new Date(data.currentInstallationDate),
       location: data.location,
       url_image: data.url_image ?? null,
+      status: data.status ?? null, // Corrigido para ser boolean | null
       serialNumber: data.serialNumber,
-      status: data.status ?? true,
       created_at: new Date(),
+      updated_at: new Date() ?? null, //
     }
     this.items.push(equipment)
     return equipment
+  }
+
+  async findById(id: string) {
+    const equipment = this.items.find((item) => item.id === id)
+
+    if (!equipment) {
+      return null
+    }
+    return equipment
+  }
+
+  async save(equipment: Equipment) {
+    const itemIndex = this.items.findIndex((item) => item.id === equipment.id)
+    this.items[itemIndex] = equipment
+    return equipment
+  }
+
+  async delete(equipment: Equipment) {
+    const itemIndex = this.items.findIndex((item) => item.id === equipment.id)
+    this.items.splice(itemIndex, 1)
   }
 }

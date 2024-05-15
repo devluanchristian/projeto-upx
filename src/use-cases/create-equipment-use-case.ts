@@ -3,6 +3,7 @@ import { EquipmentRepository } from '../repositories/equipment-repository'
 
 interface CreateEquipmentUseCaseRequest {
   name: string
+  status?: boolean
   currentInstallationDate: string
   nextManutentionDate: string
   location: string
@@ -24,6 +25,7 @@ export class CreateEquipmentUseCase {
   }: CreateEquipmentUseCaseRequest): Promise<CreateEquipmentUseCaseResponse> {
     const equipment = await this.equipmentRepository.create({
       name,
+      status: true,
       currentInstallationDate,
       nextManutentionDate,
       location,

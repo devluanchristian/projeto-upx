@@ -34,14 +34,17 @@ export class InMemoryEquipmentRepository implements EquipmentRepository {
     return equipment
   }
 
-  async save(equipment: Equipment) {
-    const itemIndex = this.items.findIndex((item) => item.id === equipment.id)
-    this.items[itemIndex] = equipment
+  async save(id: string, equipment: Equipment) {
+    const equipmentId = this.items.find((item) => item.id === id)
+    if (equipmentId) {
+      const itemIndex = this.items.findIndex((item) => item.id === equipment.id)
+      this.items[itemIndex] = equipment
+    }
     return equipment
   }
 
-  async delete(equipment: Equipment) {
-    const itemIndex = this.items.findIndex((item) => item.id === equipment.id)
+  async delete(equipmentId: string) {
+    const itemIndex = this.items.findIndex((item) => item.id === equipmentId)
     this.items.splice(itemIndex, 1)
   }
 }

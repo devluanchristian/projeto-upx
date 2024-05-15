@@ -9,6 +9,7 @@ interface EditEquipmentUseCaseRequest {
   nextManutentionDate: string
   location: string
   serialNumber: string
+  updated_at: string
 }
 
 interface EditEquipmentUseCaseResponse {
@@ -36,12 +37,16 @@ export class EditEquipmentUseCase {
     equipment.nextManutentionDate = new Date(nextManutentionDate)
     equipment.location = location
     equipment.serialNumber = serialNumber
+    equipment.updated_at = new Date()
     if (status) {
       equipment.status = true
     } else {
       equipment.status = false
     }
-    const editedEquipment = await this.equipmentRepository.save(equipment)
+    const editedEquipment = await this.equipmentRepository.save(
+      equipmentId,
+      equipment,
+    )
     return { editedEquipment }
   }
 }

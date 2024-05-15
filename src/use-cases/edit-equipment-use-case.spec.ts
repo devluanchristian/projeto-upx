@@ -16,7 +16,7 @@ describe('Edit equipment use case', () => {
 
   it('should edit an equipment', async () => {
     // Criação do equipamento
-    const createResult = await createEquipmentUseCase.execute({
+    const { equipment } = await createEquipmentUseCase.execute({
       name: 'Equipment',
       currentInstallationDate: '2024-01-02',
       location: 'setor 4',
@@ -24,32 +24,23 @@ describe('Edit equipment use case', () => {
       serialNumber: '213423549234598',
     })
 
-    const { equipment } = createResult
-    console.log('Created equipment:', equipment)
-
     // Verificação se o equipamento foi criado corretamente
-    if (!equipment || !equipment.id) {
-      throw new Error('Failed to create equipment')
-    }
+    console.log('Created equipment:', equipment)
 
     // Edição do equipamento
     const editResult = await editEquipmentUseCase.execute({
       equipmentId: equipment.id,
-      name: 'teste',
+      name: 'ferramenta',
       currentInstallationDate: '2021-01-02',
       location: 'setor 4',
       nextManutentionDate: '2021-04-02',
       serialNumber: '234234234',
       status: false,
+      updated_at: new Date().toDateString(),
     })
 
-    console.log('Edit result:', editResult)
-    const { editedEquipment } = editResult
-
     // Verificação se a edição do equipamento foi bem-sucedida
-    if (!editedEquipment || !editedEquipment.id) {
-      throw new Error('Failed to edit equipment')
-    }
+    const { editedEquipment } = editResult
     console.log('Edited equipment:', editedEquipment)
 
     // Comparação do ID do equipamento original com o ID do equipamento editado

@@ -7,9 +7,9 @@
 },
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "node build/server.js",
+    "start": "node dist/server.js",
     "lint": "eslint src --ext .ts --fix",
-    "build": "tsup src --out-dir build",
+    "build": "tsup src ",
     "test": "vitest run",
     "test:watch": "vitest"
   },

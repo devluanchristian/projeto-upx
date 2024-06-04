@@ -5,14 +5,14 @@ interface GetUserRequest {
   CPF: string
 }
 
-interface GetUserRequestResponse {
+interface GetUserResponse {
   user: User
 }
 
 export class GetUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
-  async execute({ CPF }: GetUserRequest): Promise<GetUserRequestResponse> {
+  async execute({ CPF }: GetUserRequest): Promise<GetUserResponse> {
     const user = await this.userRepository.findByCPF(CPF)
 
     if (!user) {

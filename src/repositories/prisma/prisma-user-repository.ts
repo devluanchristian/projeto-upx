@@ -24,4 +24,9 @@ export class PrismaUserRepository
     })
     return user
   }
+
+  async list() {
+    const listUser = await this.user.findMany()
+    return listUser
+  }
 }

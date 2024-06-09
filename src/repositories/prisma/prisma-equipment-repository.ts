@@ -38,4 +38,9 @@ export class PrismaEquipmentRepository
       where: { id },
     })
   }
+
+  async list() {
+    const listEquipment = await this.equipment.findMany()
+    return listEquipment
+  }
 }

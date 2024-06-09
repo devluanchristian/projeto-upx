@@ -5,4 +5,5 @@ export interface EquipmentRepository {
   findById(id: string): Promise<Equipment | null>
   save(id: string, equipment: Equipment): Promise<Equipment>
   delete(id: string): Promise<void>
+  list(): Promise<Equipment[]>
 }

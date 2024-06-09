@@ -47,4 +47,8 @@ export class InMemoryEquipmentRepository implements EquipmentRepository {
     const itemIndex = this.items.findIndex((item) => item.id === equipmentId)
     this.items.splice(itemIndex, 1)
   }
+
+  async list(): Promise<Equipment[]> {
+    return this.items
+  }
 }

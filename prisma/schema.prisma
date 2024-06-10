@@ -16,6 +16,8 @@ model User {
   CPF           String   @unique
   password_hash String
   created_at    DateTime @default(now())
+  status        Boolean  @default(true)
+  isAdmin       Boolean  @default(false)
 }
 
 model Equipment {

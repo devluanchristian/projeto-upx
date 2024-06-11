@@ -4,4 +4,5 @@ export interface UserRepository {
   create(data: Prisma.UserCreateInput): Promise<User>
   findByCPF(CPF: string): Promise<User | null>
   list(): Promise<User[]>
+  save(id: string, user: User): Promise<User>
 }

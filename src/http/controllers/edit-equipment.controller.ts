@@ -42,7 +42,7 @@ export async function editEquipment(
       serialNumber,
       status,
     })
-    reply.status(201).send(editedEquipment)
+    reply.status(200).send(editedEquipment)
   } catch (error) {
     if (error instanceof Error) {
       return reply.status(400).send({ message: error.message })

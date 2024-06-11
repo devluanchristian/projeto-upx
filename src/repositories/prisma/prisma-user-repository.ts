@@ -29,4 +29,12 @@ export class PrismaUserRepository
     const listUser = await this.user.findMany()
     return listUser
   }
+
+  async save(CPF: string, data: Prisma.UserUpdateInput) {
+    const editedUser = await this.user.update({
+      where: { CPF },
+      data,
+    })
+    return editedUser
+  }
 }

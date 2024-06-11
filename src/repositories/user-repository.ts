@@ -5,4 +5,5 @@ export interface UserRepository {
   findByCPF(CPF: string): Promise<User | null>
   list(): Promise<User[]>
   save(id: string, user: User): Promise<User>
+  delete(CPF: string): Promise<void>
 }

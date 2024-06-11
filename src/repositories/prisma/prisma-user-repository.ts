@@ -37,4 +37,10 @@ export class PrismaUserRepository
     })
     return editedUser
   }
+
+  async delete(CPF: string) {
+    await this.user.delete({
+      where: { CPF },
+    })
+  }
 }

@@ -8,6 +8,7 @@ import { getUser } from './controllers/get-user.controller'
 import { listUser } from './controllers/list-user.controller'
 import { listEquipment } from './controllers/list-equipment.controller'
 import { editUser } from './controllers/edit-user.controller'
+import { deleteUser } from './controllers/delete-account.controller'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/register', createAccount)
@@ -19,4 +20,5 @@ export async function appRoutes(app: FastifyInstance) {
   app.put('/equipment/:equipmentId', editEquipment)
   app.put('/user/:CPF', editUser)
   app.delete('/equipment/:equipmentId', deleteEquipment)
+  app.delete('/user/:CPF', deleteUser)
 }

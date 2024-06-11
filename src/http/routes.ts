@@ -9,12 +9,14 @@ import { listUser } from './controllers/list-user.controller'
 import { listEquipment } from './controllers/list-equipment.controller'
 import { editUser } from './controllers/edit-user.controller'
 import { deleteUser } from './controllers/delete-account.controller'
+import { findEquipment } from './controllers/find-equipment.controller'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/register', createAccount)
   app.get('/user/:CPF', getUser)
   app.get('/user', listUser)
   app.get('/equipment', listEquipment)
+  app.get('/equipment/:equipmentId', findEquipment)
   app.post('/login', authenticateAccount)
   app.post('/equipment', createEquipment)
   app.put('/equipment/:equipmentId', editEquipment)

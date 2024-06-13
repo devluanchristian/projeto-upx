@@ -22,8 +22,9 @@ export class EditAcconutUseCase {
     CPF,
     password,
     status,
+    userCPF,
   }: EditAcconutRequest): Promise<EditAcconutResponse> {
-    const user = await this.userRepository.findByCPF(CPF)
+    const user = await this.userRepository.findByCPF(userCPF)
     const password_hash = await hash(password, 8)
     if (!user) {
       throw new Error('Credencias invalidas')

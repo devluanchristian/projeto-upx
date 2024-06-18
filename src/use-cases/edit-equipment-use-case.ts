@@ -4,7 +4,7 @@ import { EquipmentRepository } from '../repositories/equipment-repository'
 interface EditEquipmentUseCaseRequest {
   equipmentId: string
   name: string
-  status?: boolean
+  active?: boolean
   currentInstallationDate: string
   nextManutentionDate: string
   location: string
@@ -25,7 +25,7 @@ export class EditEquipmentUseCase {
     currentInstallationDate,
     nextManutentionDate,
     location,
-    status,
+    active,
     serialNumber,
     description,
   }: EditEquipmentUseCaseRequest): Promise<EditEquipmentUseCaseResponse> {
@@ -41,10 +41,10 @@ export class EditEquipmentUseCase {
     equipment.serialNumber = serialNumber
     equipment.description = description
     equipment.updated_at = new Date()
-    if (status) {
-      equipment.status = true
+    if (active) {
+      equipment.active = true
     } else {
-      equipment.status = false
+      equipment.active = false
     }
     const editedEquipment = await this.equipmentRepository.save(
       equipmentId,

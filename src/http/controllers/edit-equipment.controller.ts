@@ -10,7 +10,7 @@ export async function editEquipment(
 ) {
   const editEquipmentBodySchema = z.object({
     name: z.string(),
-    status: z.boolean(),
+    active: z.boolean(),
     nextManutentionDate: z.string(),
     currentInstallationDate: z.string(),
     location: z.string(),
@@ -28,7 +28,7 @@ export async function editEquipment(
     nextManutentionDate,
     serialNumber,
     description,
-    status,
+    active,
   } = editEquipmentBodySchema.parse(request.body)
 
   try {
@@ -43,7 +43,7 @@ export async function editEquipment(
       nextManutentionDate,
       serialNumber,
       description,
-      status,
+      active,
     })
     reply.status(200).send(editedEquipment)
   } catch (error) {

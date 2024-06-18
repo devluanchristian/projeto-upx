@@ -15,6 +15,7 @@ export async function editEquipment(
     currentInstallationDate: z.string(),
     location: z.string(),
     serialNumber: z.string(),
+    description: z.string(),
   })
   const getEquipmentSchema = z.object({
     equipmentId: z.string(),
@@ -26,6 +27,7 @@ export async function editEquipment(
     location,
     nextManutentionDate,
     serialNumber,
+    description,
     status,
   } = editEquipmentBodySchema.parse(request.body)
 
@@ -40,6 +42,7 @@ export async function editEquipment(
       location,
       nextManutentionDate,
       serialNumber,
+      description,
       status,
     })
     reply.status(200).send(editedEquipment)

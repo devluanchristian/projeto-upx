@@ -8,6 +8,7 @@ interface CreateEquipmentUseCaseRequest {
   nextManutentionDate: string
   location: string
   serialNumber: string
+  description?: string
 }
 
 interface CreateEquipmentUseCaseResponse {
@@ -22,6 +23,7 @@ export class CreateEquipmentUseCase {
     nextManutentionDate,
     location,
     serialNumber,
+    description,
   }: CreateEquipmentUseCaseRequest): Promise<CreateEquipmentUseCaseResponse> {
     const equipment = await this.equipmentRepository.create({
       name,
@@ -30,6 +32,7 @@ export class CreateEquipmentUseCase {
       nextManutentionDate,
       location,
       serialNumber,
+      description,
     })
     return { equipment }
   }

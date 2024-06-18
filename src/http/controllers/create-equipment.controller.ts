@@ -14,7 +14,9 @@ export async function createEquipment(
     currentInstallationDate: z.string(),
     location: z.string(),
     serialNumber: z.string(),
+    description: z.string(),
   })
+  console.log(request.body)
   const {
     name,
     currentInstallationDate,
@@ -22,6 +24,7 @@ export async function createEquipment(
     nextManutentionDate,
     serialNumber,
     status,
+    description,
   } = createEquipmentBodySchema.parse(request.body)
 
   try {
@@ -35,6 +38,7 @@ export async function createEquipment(
       nextManutentionDate,
       serialNumber,
       status,
+      description,
     })
     reply.status(201).send(equipment)
   } catch (error) {

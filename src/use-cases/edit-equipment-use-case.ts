@@ -9,6 +9,7 @@ interface EditEquipmentUseCaseRequest {
   nextManutentionDate: string
   location: string
   serialNumber: string
+  description: string
   updated_at?: string
 }
 
@@ -26,6 +27,7 @@ export class EditEquipmentUseCase {
     location,
     status,
     serialNumber,
+    description,
   }: EditEquipmentUseCaseRequest): Promise<EditEquipmentUseCaseResponse> {
     const equipment = await this.equipmentRepository.findById(equipmentId)
 
@@ -37,6 +39,7 @@ export class EditEquipmentUseCase {
     equipment.nextManutentionDate = new Date(nextManutentionDate)
     equipment.location = location
     equipment.serialNumber = serialNumber
+    equipment.description = description
     equipment.updated_at = new Date()
     if (status) {
       equipment.status = true

@@ -34,4 +34,5 @@ model Equipment {
   created_at              DateTime  @default(now())
   updated_at              DateTime?
   status                  String?
+  maintenanceCount        Int?  @default(0)
 }

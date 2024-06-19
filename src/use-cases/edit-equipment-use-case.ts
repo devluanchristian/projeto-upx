@@ -11,6 +11,9 @@ interface EditEquipmentUseCaseRequest {
   serialNumber: string
   description: string
   updated_at?: string
+  maintenanceCount: number
+  lastManutentionDate: string
+  status: string
 }
 
 interface EditEquipmentUseCaseResponse {
@@ -28,6 +31,9 @@ export class EditEquipmentUseCase {
     active,
     serialNumber,
     description,
+    maintenanceCount,
+    lastManutentionDate,
+    status,
   }: EditEquipmentUseCaseRequest): Promise<EditEquipmentUseCaseResponse> {
     const equipment = await this.equipmentRepository.findById(equipmentId)
 
@@ -46,6 +52,9 @@ export class EditEquipmentUseCase {
     } else {
       equipment.active = false
     }
+    equipment.maintenanceCount = maintenanceCount
+    equipment.lastManutentionDate = new Date(lastManutentionDate)
+    equipment.status = status
     const editedEquipment = await this.equipmentRepository.save(
       equipmentId,
       equipment,

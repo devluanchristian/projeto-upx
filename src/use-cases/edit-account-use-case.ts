@@ -11,7 +11,7 @@ interface EditAcconutRequest {
 }
 
 interface EditAcconutResponse {
-  user: User
+  editAccountUser: User
 }
 
 export class EditAcconutUseCase {
@@ -27,14 +27,16 @@ export class EditAcconutUseCase {
     const user = await this.userRepository.findByCPF(userCPF)
     const password_hash = await hash(password, 8)
     if (!user) {
-      throw new Error('Credencias invalidas')
+      throw new Error('Usuário não encontrado')
     }
     user.name = name
     user.password_hash = password_hash
     user.status = status
     user.CPF = CPF
+
+    const editAccountUser = await this.userRepository.save(userCPF, user)
     return {
-      user,
+      editAccountUser,
     }
   }
 }

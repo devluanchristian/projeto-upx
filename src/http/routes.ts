@@ -20,7 +20,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.post('/login', authenticateAccount)
   app.post('/equipment', createEquipment)
   app.patch('/equipment/:equipmentId', editEquipment)
-  app.patch('/user/:CPF', editUser)
+  app.patch('/user/:userCPF', editUser)
   app.delete('/user/:CPF', deleteUser)
   app.delete('/equipment/:equipmentId', deleteEquipment)
 }

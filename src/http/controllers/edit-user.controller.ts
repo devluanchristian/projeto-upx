@@ -23,14 +23,14 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
     const repositories = new PrismaUserRepository()
     const editUserUseCase = new EditAcconutUseCase(repositories)
 
-    const { user } = await editUserUseCase.execute({
+    const { editAccountUser } = await editUserUseCase.execute({
       userCPF,
       name,
       CPF,
       password,
       status,
     })
-    reply.status(200).send(user)
+    reply.status(200).send(editAccountUser)
   } catch (error) {
     if (error instanceof Error) {
       return reply.status(400).send({ message: error.message })

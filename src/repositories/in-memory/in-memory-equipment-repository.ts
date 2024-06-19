@@ -16,7 +16,7 @@ export class InMemoryEquipmentRepository implements EquipmentRepository {
       currentInstallationDate: new Date(data.currentInstallationDate),
       location: data.location,
       url_image: data.url_image ?? null,
-      status: data.status ?? null, // Corrigido para ser boolean | null
+      active: data.active ?? null, // Corrigido para ser boolean | null
       serialNumber: data.serialNumber,
       created_at: new Date(),
       updated_at: new Date() ?? null, //

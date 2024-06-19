@@ -33,4 +33,5 @@ model Equipment {
   active                  Boolean?
   created_at              DateTime  @default(now())
   updated_at              DateTime?
+  status                  String?
 }

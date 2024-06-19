@@ -9,6 +9,7 @@ interface CreateEquipmentUseCaseRequest {
   location: string
   serialNumber: string
   description?: string
+  status?: string
 }
 
 interface CreateEquipmentUseCaseResponse {
@@ -33,6 +34,7 @@ export class CreateEquipmentUseCase {
       location,
       serialNumber,
       description,
+      status: 'Agendada',
     })
     return { equipment }
   }

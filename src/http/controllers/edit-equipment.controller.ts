@@ -10,11 +10,15 @@ export async function editEquipment(
 ) {
   const editEquipmentBodySchema = z.object({
     name: z.string(),
-    status: z.boolean(),
+    active: z.boolean(),
     nextManutentionDate: z.string(),
     currentInstallationDate: z.string(),
     location: z.string(),
     serialNumber: z.string(),
+    description: z.string(),
+    maintenanceCount: z.number(),
+    lastManutentionDate: z.string(),
+    status: z.string(),
   })
   const getEquipmentSchema = z.object({
     equipmentId: z.string(),
@@ -26,6 +30,10 @@ export async function editEquipment(
     location,
     nextManutentionDate,
     serialNumber,
+    description,
+    active,
+    maintenanceCount,
+    lastManutentionDate,
     status,
   } = editEquipmentBodySchema.parse(request.body)
 
@@ -40,6 +48,10 @@ export async function editEquipment(
       location,
       nextManutentionDate,
       serialNumber,
+      description,
+      active,
+      maintenanceCount,
+      lastManutentionDate,
       status,
     })
     reply.status(200).send(editedEquipment)

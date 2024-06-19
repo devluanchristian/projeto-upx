@@ -3,11 +3,13 @@ import { EquipmentRepository } from '../repositories/equipment-repository'
 
 interface CreateEquipmentUseCaseRequest {
   name: string
-  status?: boolean
+  active?: boolean
   currentInstallationDate: string
   nextManutentionDate: string
   location: string
   serialNumber: string
+  description?: string
+  status?: string
 }
 
 interface CreateEquipmentUseCaseResponse {
@@ -22,14 +24,17 @@ export class CreateEquipmentUseCase {
     nextManutentionDate,
     location,
     serialNumber,
+    description,
   }: CreateEquipmentUseCaseRequest): Promise<CreateEquipmentUseCaseResponse> {
     const equipment = await this.equipmentRepository.create({
       name,
-      status: true,
+      active: true,
       currentInstallationDate,
       nextManutentionDate,
       location,
       serialNumber,
+      description,
+      status: 'Agendada',
     })
     return { equipment }
   }

@@ -4,12 +4,16 @@ import { EquipmentRepository } from '../repositories/equipment-repository'
 interface EditEquipmentUseCaseRequest {
   equipmentId: string
   name: string
-  status?: boolean
+  active?: boolean
   currentInstallationDate: string
   nextManutentionDate: string
   location: string
   serialNumber: string
+  description: string
   updated_at?: string
+  maintenanceCount: number
+  lastManutentionDate: string
+  status: string
 }
 
 interface EditEquipmentUseCaseResponse {
@@ -24,8 +28,12 @@ export class EditEquipmentUseCase {
     currentInstallationDate,
     nextManutentionDate,
     location,
-    status,
+    active,
     serialNumber,
+    description,
+    maintenanceCount,
+    lastManutentionDate,
+    status,
   }: EditEquipmentUseCaseRequest): Promise<EditEquipmentUseCaseResponse> {
     const equipment = await this.equipmentRepository.findById(equipmentId)
 
@@ -37,12 +45,16 @@ export class EditEquipmentUseCase {
     equipment.nextManutentionDate = new Date(nextManutentionDate)
     equipment.location = location
     equipment.serialNumber = serialNumber
+    equipment.description = description
     equipment.updated_at = new Date()
-    if (status) {
-      equipment.status = true
+    if (active) {
+      equipment.active = true
     } else {
-      equipment.status = false
+      equipment.active = false
     }
+    equipment.maintenanceCount = maintenanceCount
+    equipment.lastManutentionDate = new Date(lastManutentionDate)
+    equipment.status = status
     const editedEquipment = await this.equipmentRepository.save(
       equipmentId,
       equipment,

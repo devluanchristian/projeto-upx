@@ -9,19 +9,22 @@ export async function createEquipment(
 ) {
   const createEquipmentBodySchema = z.object({
     name: z.string(),
-    status: z.boolean(),
+    active: z.boolean(),
     nextManutentionDate: z.string(),
     currentInstallationDate: z.string(),
     location: z.string(),
     serialNumber: z.string(),
+    description: z.string(),
   })
+  console.log(request.body)
   const {
     name,
     currentInstallationDate,
     location,
     nextManutentionDate,
     serialNumber,
-    status,
+    active,
+    description,
   } = createEquipmentBodySchema.parse(request.body)
 
   try {
@@ -34,7 +37,8 @@ export async function createEquipment(
       location,
       nextManutentionDate,
       serialNumber,
-      status,
+      active,
+      description,
     })
     reply.status(201).send(equipment)
   } catch (error) {
